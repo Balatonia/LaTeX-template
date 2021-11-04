@@ -1,0 +1,156 @@
+%%% THIS TEMPLATE WAS CREATED BY MARIE-LUISE POPP %%%
+%%% use this template for your theses, handouts and articles %%%
+
+\documentclass[a4paper, 12pt]{article}
+
+%%% basic layout %%%
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, ngerman]{babel} %% choose either option
+\usepackage{libertine} %% nicer font
+
+
+
+\usepackage[normalem]{ulem} %for underlining and striking out
+\usepackage{enumitem}
+\setlist{nolistsep} %%% decreases verticle space between items in itemize and enumerate environments
+
+%\setlength{\parindent}{0pt} %this command disables indenting globally.
+
+%%% Symbols %%%
+\usepackage{pifont} %%% enables ding-symbols, like the OT hand
+
+%%% OT tableaux and tables %%%
+
+\usepackage{ot-tableau} %for ot tableaux
+\usepackage[table]{xcolor}    %for shading
+\usepackage{rotating}    %for angled text
+\usepackage{arydshln} % for dashed lines
+
+%%% Trees %%%
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{tikz-qtree-compat}
+%this line of code allows you to use a line break within a node
+\tikzset{baseline, every tree node/.style={align=center, anchor=north}}
+
+%%% Glosses %%%
+\usepackage{linguex}
+%\renewcommand{\firstrefdash}{} %uncomment this command if you want to remove the dash in references to subex.
+
+%%% Bibliography %%%
+\usepackage{natbib}
+\bibliographystyle{unified}
+%% use the following two lines to manually improve the citation style
+\setcitestyle{aysep={},notesep={, }}
+\bibpunct[:]{(}{)}{,}{a}{}{,}
+
+%%% META %%%
+\title{LaTeX template}
+\author{Marie-Luise Popp}
+\date{\today}
+
+\begin{document}
+
+%%% this code sets a title page and a table of contents %%% 
+%%% uncomment this if you want a regular title %%%
+\thispagestyle{empty}
+\setcounter{page}{1}
+\vspace*{0,5cm}
+\begin{huge} \begin{center} \textbf{YOUR TITLE}
+\end{center}
+\end{huge}
+\vspace*{1,5cm}
+\begin{center} \textbf{Master's Thesis}\end{center}
+
+\begin{center}
+University of Leipzig \\
+Faculty of Philology \\
+Department of Linguistics\\
+\end{center}
+\vspace*{3cm}
+\begin{center}
+submitted by: \end{center}
+
+\begin{center}
+Your name \\[5mm]
+Matrikel-Nr. 0456 \\
+
+\end{center}
+
+\vfill
+
+\begin{tabbing}
+E-Mail: your email \= \kill
+First reviewer: \> Second reviewer: \\
+Name  \> Name \\
+\end{tabbing}
+\begin{center} Leipzig, Date \end{center}
+\newpage
+\thispagestyle{empty}
+
+\tableofcontents
+\newpage
+
+%\listoftables
+%\listoffigures
+%\newpage
+
+\thispagestyle{empty}
+\setcounter{page}{1}
+
+\newpage 
+
+%%% a normale title %%%
+%\maketitle
+%tableofcontents
+
+
+
+
+\ex. 
+\ag. Julia-s Bruder studiert in Halle. \\
+Julia-\textsc{gen} brother studies in Halle \\
+\bg. Der Julia ihr Bruder studiert in Halle. \\
+\textsc{def.dat} Julia her brother studies in Halle \\
+\bg. Der Bruder von Julia studiert in Halle. \\
+\textsc{def.nom} brother of Julia studies in Halle \\
+`Julia's brother studies in Halle.'
+
+\section{OT-Tableau}
+
+%% this code is from https://meluhha.com/tableau/
+
+\begin{center} \renewcommand*\arraystretch{1.2}
+\scalebox{1}[1]{\begin{tabular}[t]{|rrl||c|c|c|} \hline
+\multicolumn{3}{|c||}{} & *\textsc{CC} & \textsc{dep} & \textsc{max} \\[0.5ex]
+\hline \hline a. & & mast & $\ast$! & \cellcolor{lightgray} & \cellcolor{lightgray} \\
+\hline b. & & masat & & $\ast$! & \cellcolor{lightgray} \\
+\hline c. & \ding{43} & mas & & & \cellcolor{lightgray}$\ast$ \\
+\hline \end{tabular}} \renewcommand*\arraystretch{1} \end{center}
+
+
+In Testsprache werden komplexe Onsets durch Lösung des zweiten Konsonanten vermieden, wie man im Tableau in \ref{ot-complex} sieht. 
+
+\ex. Vermeidung komplexer Onsets \label{ot-complex} \\
+\begin{tableau}{c:c|c}
+\inp{\ips{stap}} \const{*Complex} \const{Anchor-IO} \const{Contiguity-IO}
+\cand{stap} \vio{*!} \vio{} \vio{}
+\cand[\Optimal]{sap} \vio{} \vio{} \vio{*}
+\cand{tap} \vio{} \vio{*!} \vio{}
+\end{tableau}
+
+\section{Trees}
+
+\begin{tikzpicture}
+\Tree [.CP [.DP \node(a){who}; ] [.C$'$ C [.TP T [.\node[draw, circle, dashed, label ={[red]right: Phase boundary}]{vP}; [.DP \node(b){t}; ] [.v$'$ v [.VP [.V loves ] \qroof{Mary}.DP ] ] ] ] ] ]
+\draw[<-,semithick] (a.south) to [bend right=90] node[midway] {\ding{55}} (b.west);
+%\draw[<-,semithick] (a.south) |- (b.west);
+
+\end{tikzpicture}
+
+
+
+\end{document}
